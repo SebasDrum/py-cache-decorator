@@ -3,19 +3,19 @@ from typing import Callable
 
 def cache(func: Callable) -> Callable:
     
-    memoria = {}
+    memo = {}
     
     def wrapper(*args, **kwargs):
 
-        clave = (args, tuple(sorted(kwargs.items())))
+        key = (args, tuple(sorted(kwargs.items())))
 
-        if clave in memoria:
+        if key in memo:
             print("Getting from cache")
-            return memoria[clave]
+            return memo[key]
 
         print("Calculating new result")
-        resultado = func(*args, **kwargs)
-        memoria[clave] = resultado
-        return resultado
+        result = func(*args, **kwargs)
+        memo[key] = result
+        return result
 
     return wrapper
