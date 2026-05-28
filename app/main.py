@@ -2,11 +2,10 @@ from typing import Callable
 
 
 def cache(func: Callable) -> Callable:
-    
-    memo = {}
-    
-    def wrapper(*args, **kwargs):
 
+    memo = {}
+
+    def wrapper(*args, **kwargs):
         key = (args, tuple(sorted(kwargs.items())))
 
         if key in memo:
